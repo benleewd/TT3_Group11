@@ -31,6 +31,7 @@ import TableList from "views/TableList/TableList.js";
 import Typography from "views/Typography/Typography.js";
 import Icons from "views/Icons/Icons.js";
 import Maps from "views/Maps/Maps.js";
+import Test from "views/Test.js";
 import NotificationsPage from "views/Notifications/Notifications.js";
 import UpgradeToPro from "views/UpgradeToPro/UpgradeToPro.js";
 // core components/views for RTL layout
@@ -43,6 +44,14 @@ const dashboardRoutes = [
     rtlName: "لوحة القيادة",
     icon: Dashboard,
     component: DashboardPage,
+    layout: "/admin"
+  },
+  {
+    path: "/test",
+    name: "Test",
+    rtlName: "لوحة القيادة",
+    icon: Dashboard,
+    component: Test,
     layout: "/admin"
   },
   {
