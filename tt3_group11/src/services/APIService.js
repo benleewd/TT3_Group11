@@ -10,10 +10,10 @@ class APIService {
           username: username,
           password: password
         }, option);
-    
+
         const resData = res1.data;
         if (resData) {
-          console.log(resData);
+        //   console.log(resData.phoneNumber);
           localStorage.setItem("accountKey", resData.accountKey)
           return resData;
         } else {
