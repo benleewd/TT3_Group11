@@ -8,7 +8,7 @@ import Table from "components/Table/Table.js";
 import Card from "components/Card/Card.js";
 import CardHeader from "components/Card/CardHeader.js";
 import CardBody from "components/Card/CardBody.js";
-
+import axios from 'axios';
 const styles = {
   cardCategoryWhite: {
     "&,& a,& a:hover,& a:focus": {
@@ -42,21 +42,41 @@ const styles = {
 const useStyles = makeStyles(styles);
 
 export default function TableList() {
+
+  const option = {
+    headers: {'x-api-key': "dONTGMAVVY8v9A85C3Vs7x7id9yvfXB7dn2Idmj5"}
+  };
+
+  function getPastTransactions(){
+    let accountKey = localStorage.getItem('accountKey');
+    const res1 =  axios.post("https://849rs099m3.execute-api.ap-southeast-1.amazonaws.com/techtrek/transactions/view", {
+      accountKey: accountKey
+    }, option);
+    const resData = res1.data;
+    if (resData) {
+      console.log(resData);
+      return resData;
+    } else {
+      console.log("Bad response");
+      return resData;
+    }
+}
+
   const classes = useStyles();
   return (
     <GridContainer>
       <GridItem xs={12} sm={12} md={12}>
         <Card>
           <CardHeader color="primary">
-            <h4 className={classes.cardTitleWhite}>Simple Table</h4>
+            <h4 className={classes.cardTitleWhite}>Transaction History </h4>
             <p className={classes.cardCategoryWhite}>
-              Here is a subtitle for this table
+              Here is your transaction details
             </p>
           </CardHeader>
           <CardBody>
             <Table
               tableHeaderColor="primary"
-              tableHead={["Name", "Country", "City", "Salary"]}
+              tableHead={["Transaction Id ", "Order Type", "Time Stamp", "Asset Symbol ", "Asset Amount", "Asset Price", "Cash Amount"]}
               tableData={[
                 ["Dakota Rice", "Niger", "Oud-Turnhout", "$36,738"],
                 ["Minerva Hooper", "Curaçao", "Sinaai-Waas", "$23,789"],
@@ -64,44 +84,6 @@ export default function TableList() {
                 ["Philip Chaney", "Korea, South", "Overland Park", "$38,735"],
                 ["Doris Greene", "Malawi", "Feldkirchen in Kärnten", "$63,542"],
                 ["Mason Porter", "Chile", "Gloucester", "$78,615"]
-              ]}
-            />
-          </CardBody>
-        </Card>
-      </GridItem>
-      <GridItem xs={12} sm={12} md={12}>
-        <Card plain>
-          <CardHeader plain color="primary">
-            <h4 className={classes.cardTitleWhite}>
-              Table on Plain Background
-            </h4>
-            <p className={classes.cardCategoryWhite}>
-              Here is a subtitle for this table
-            </p>
-          </CardHeader>
-          <CardBody>
-            <Table
-              tableHeaderColor="primary"
-              tableHead={["ID", "Name", "Country", "City", "Salary"]}
-              tableData={[
-                ["1", "Dakota Rice", "$36,738", "Niger", "Oud-Turnhout"],
-                ["2", "Minerva Hooper", "$23,789", "Curaçao", "Sinaai-Waas"],
-                ["3", "Sage Rodriguez", "$56,142", "Netherlands", "Baileux"],
-                [
-                  "4",
-                  "Philip Chaney",
-                  "$38,735",
-                  "Korea, South",
-                  "Overland Park"
-                ],
-                [
-                  "5",
-                  "Doris Greene",
-                  "$63,542",
-                  "Malawi",
-                  "Feldkirchen in Kärnten"
-                ],
-                ["6", "Mason Porter", "$78,615", "Chile", "Gloucester"]
               ]}
             />
           </CardBody>
