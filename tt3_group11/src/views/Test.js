@@ -71,6 +71,8 @@ function handleSubmit(username, password) {
 
 export default function Test(){
   const classes = useStyles();
+
+  let data = handleSubmit("Group11", "r3tdgoOz53DcBbC");
   return (
     <GridContainer>
       <GridItem xs={12} sm={12} md={12}>
