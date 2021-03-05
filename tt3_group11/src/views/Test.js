@@ -30,12 +30,12 @@ class Test extends React.Component{
           <Card>
             <CardBody>
               <div>
+                <button onClick={()=>this.getBalance()}>Get Balance</button>
+              </div>
+              <div>
                 <input name="assetAmount" onChange={this.handleChange}></input>
                 <button onClick={()=>this.buyAsset()}>Buy Asset</button>
                 <button onClick={()=>this.sellAsset()}>Sell Asset</button>
-              </div>
-              <div>
-                <button onClick={()=>this.handleSubmit("Group11", "r3tdgoOz53DcBbC")}>Testing</button>
               </div>
             </CardBody>
           </Card>
@@ -120,7 +120,7 @@ class Test extends React.Component{
   };
 
   getBalance() {
-    let balance = APIService.login();
+    let balance = APIService.getBalance();
     balance.then(res => {
       console.log(res)
       this.setState({'data': res})
@@ -129,7 +129,6 @@ class Test extends React.Component{
   };
 
   buyAsset() {
-    localStorage.setItem("accountKey", "9b2824bc-9401-4ced-82bb-beac961ae286");
     let asset = APIService.buySellAsset("BUY",this.state.assetAmount);
     asset.then(res => {
       console.log(res)
@@ -139,7 +138,6 @@ class Test extends React.Component{
   };
 
   sellAsset() {
-    localStorage.setItem("accountKey", "9b2824bc-9401-4ced-82bb-beac961ae286");
     APIService.buySellAsset("SELL",this.state.assetAmount).then(res => {
       console.log(res)
       this.setState({'data': res})
