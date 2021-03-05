@@ -65,7 +65,7 @@ const dashboardRoutes = [
   },
   {
     path: "/table",
-    name: "Table List",
+    name: "Transaction History",
     rtlName: "قائمة الجدول",
     icon: "content_paste",
     component: TableList,
