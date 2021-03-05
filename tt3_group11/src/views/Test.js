@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 // core components
@@ -9,7 +8,7 @@ import Table from "components/Table/Table.js";
 import Card from "components/Card/Card.js";
 import CardHeader from "components/Card/CardHeader.js";
 import CardBody from "components/Card/CardBody.js";
-import { Link } from "react-router-dom";
+import APIService from "../services/APIService";
 
 const styles = {
   cardCategoryWhite: {
@@ -42,37 +41,16 @@ const styles = {
 };
 
 const useStyles = makeStyles(styles);
-const option = {
-  headers: {'x-api-key': "dONTGMAVVY8v9A85C3Vs7x7id9yvfXB7dn2Idmj5"}
-};
-
-class API {
-  async login(username, password){
-    const res1 = await axios.post("https://849rs099m3.execute-api.ap-southeast-1.amazonaws.com/techtrek/login", {
-      username: username,
-      password: password
-    }, option)
-
-    const resData = res1.data;
-    if (resData) {
-      console.log(resData);
-      return resData;
-    } else {
-      console.log("Bad response");
-      return resData;
-    }
-  }
-}
 
 function handleSubmit(username, password) {
-  let api = new API();
-  api.login(username, password);
+  console.log(APIService.login(username, password));
+  console.log(localStorage.getItem('accountKey'));
 }
 
 export default function Test(){
   const classes = useStyles();
 
-  let data = handleSubmit("Group11", "r3tdgoOz53DcBbC");
+  // let data = handleSubmit("Group11", "r3tdgoOz53DcBbC");
   return (
     <GridContainer>
       <GridItem xs={12} sm={12} md={12}>
