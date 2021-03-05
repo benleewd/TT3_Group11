@@ -27,6 +27,7 @@ class Test extends React.Component{
           <Card>
             <CardBody>
               <div>
+                <input name="username" onChange={this.handleChange}></input>
                 <button onClick={()=>this.handleSubmit("Group11", "r3tdgoOz53DcBbC")}> Testing</button>
               </div>
             </CardBody>
@@ -97,6 +98,10 @@ class Test extends React.Component{
       </GridContainer>
     );
   }
+  handleChange = (e) => {
+		this.setState({ [e.target.name]: e.target.value, error: '' });
+	};
+
   handleSubmit(username, password) {
     // let data = APIService.login(username, password).then(function(result) {
     //   console.log(result);
