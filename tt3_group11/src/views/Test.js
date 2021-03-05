@@ -43,7 +43,14 @@ const styles = {
 const useStyles = makeStyles(styles);
 
 function handleSubmit(username, password) {
-  console.log(APIService.login(username, password));
+  // let data = APIService.login(username, password).then(function(result) {
+  //   console.log(result);
+  //   return result;
+  // });
+  let login = APIService.login(username, password);
+  login.then(res => {
+    console.log(res)
+  });
   console.log(localStorage.getItem('accountKey'));
 }
 
