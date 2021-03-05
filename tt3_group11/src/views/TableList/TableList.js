@@ -51,15 +51,17 @@ export default function TableList() {
     let accountKey = localStorage.getItem('accountKey');
     const res1 =  axios.post("https://849rs099m3.execute-api.ap-southeast-1.amazonaws.com/techtrek/transactions/view", {
       accountKey: accountKey
-    }, option);
-    const resData = res1.data;
-    if (resData) {
-      console.log(resData);
-      return resData;
-    } else {
-      console.log("Bad response");
-      return resData;
-    }
+    }, option).then((response) => {
+      console.log(response );
+    });
+//     const resData = res1.data;
+//     if (resData) {
+//       console.log(resData);
+//       return resData;
+//     } else {
+//       console.log("Bad response");
+//       return resData;
+//     }
 }
 
   const classes = useStyles();
@@ -69,23 +71,29 @@ export default function TableList() {
         <Card>
           <CardHeader color="primary">
             <h4 className={classes.cardTitleWhite}>Transaction History </h4>
+            <button onClick = {getPastTransactions}>click</button>
             <p className={classes.cardCategoryWhite}>
               Here is your transaction details
             </p>
           </CardHeader>
           <CardBody>
-            <Table
-              tableHeaderColor="primary"
-              tableHead={["Transaction Id ", "Order Type", "Time Stamp", "Asset Symbol ", "Asset Amount", "Asset Price", "Cash Amount"]}
-              tableData={[
-                ["Dakota Rice", "Niger", "Oud-Turnhout", "$36,738"],
-                ["Minerva Hooper", "Curaçao", "Sinaai-Waas", "$23,789"],
-                ["Sage Rodriguez", "Netherlands", "Baileux", "$56,142"],
-                ["Philip Chaney", "Korea, South", "Overland Park", "$38,735"],
-                ["Doris Greene", "Malawi", "Feldkirchen in Kärnten", "$63,542"],
-                ["Mason Porter", "Chile", "Gloucester", "$78,615"]
-              ]}
-            />
+          <table >
+  <tr>
+    <th>Firstname</th>
+    <th>Lastname</th>
+    <th>Age</th>
+  </tr>
+  <tr>
+    <td>Jill</td>
+    <td>Smith</td>
+    <td>50</td>
+  </tr>
+  <tr>
+    <td>Eve</td>
+    <td>Jackson</td>
+    <td>94</td>
+  </tr>
+</table> 
           </CardBody>
         </Card>
       </GridItem>
