@@ -9,6 +9,9 @@ import Card from "components/Card/Card.js";
 import CardHeader from "components/Card/CardHeader.js";
 import CardBody from "components/Card/CardBody.js";
 import axios from 'axios';
+import APIService from "services/APIService";
+
+
 const styles = {
   cardCategoryWhite: {
     "&,& a,& a:hover,& a:focus": {
@@ -42,28 +45,6 @@ const styles = {
 const useStyles = makeStyles(styles);
 
 export default function TableList() {
-
-  const option = {
-    headers: {'x-api-key': "dONTGMAVVY8v9A85C3Vs7x7id9yvfXB7dn2Idmj5"}
-  };
-
-  function getPastTransactions(){
-    let accountKey = localStorage.getItem('accountKey');
-    const res1 =  axios.post("https://849rs099m3.execute-api.ap-southeast-1.amazonaws.com/techtrek/transactions/view", {
-      accountKey: accountKey
-    }, option).then((response) => {
-      console.log(response );
-    });
-//     const resData = res1.data;
-//     if (resData) {
-//       console.log(resData);
-//       return resData;
-//     } else {
-//       console.log("Bad response");
-//       return resData;
-//     }
-}
-
   const classes = useStyles();
   return (
     <GridContainer>
@@ -71,7 +52,6 @@ export default function TableList() {
         <Card>
           <CardHeader color="primary">
             <h4 className={classes.cardTitleWhite}>Transaction History </h4>
-            <button onClick = {getPastTransactions}>click</button>
             <p className={classes.cardCategoryWhite}>
               Here is your transaction details
             </p>
@@ -79,20 +59,33 @@ export default function TableList() {
           <CardBody>
           <table >
   <tr>
-    <th>Firstname</th>
-    <th>Lastname</th>
-    <th>Age</th>
+    <th>Transaction Id</th>
+    <th>Order Type</th>
+    <th>Time Stamp</th>
+    <th>Asset Symbol</th>
+    <th>Asset Amount </th>
+    <th>assetPrice </th>
+    <th>Cash Amount </th>
   </tr>
   <tr>
-    <td>Jill</td>
-    <td>Smith</td>
-    <td>50</td>
+    <td>1</td>
+    <td>Buy</td>
+    <td>16:30hrs</td>
+    <td>TT</td>
+    <td>200</td>
+    <td>5.1</td>
+    <td>5000</td>
   </tr>
   <tr>
-    <td>Eve</td>
-    <td>Jackson</td>
-    <td>94</td>
+    <td>2</td>
+    <td>Sell</td>
+    <td>16:30hrs</td>
+    <td>TT</td>
+    <td>200</td>
+    <td>5.1</td>
+    <td>5000</td>
   </tr>
+
 </table> 
           </CardBody>
         </Card>
