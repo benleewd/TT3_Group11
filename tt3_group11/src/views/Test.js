@@ -8,14 +8,17 @@ import CardHeader from "components/Card/CardHeader.js";
 import CardBody from "components/Card/CardBody.js";
 import APIService from "../services/APIService";
 
-  
+
 class Test extends React.Component{
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.buyAsset = this.buyAsset.bind(this);
+    this.sellAsset = this.sellAsset.bind(this);
     this.state = {
       username: "",
       password: "",
+      assetAmount: "",
       data: null
     }
   }
@@ -27,8 +30,12 @@ class Test extends React.Component{
           <Card>
             <CardBody>
               <div>
-                <input name="username" onChange={this.handleChange}></input>
-                <button onClick={()=>this.handleSubmit("Group11", "r3tdgoOz53DcBbC")}> Testing</button>
+                <input name="assetAmount" onChange={this.handleChange}></input>
+                <button onClick={()=>this.buyAsset}>Buy Asset</button>
+                <button onClick={()=>this.sellAsset}>Sell Asset</button>
+              </div>
+              <div>
+                <button onClick={()=>this.handleSubmit("Group11", "r3tdgoOz53DcBbC")}>Testing</button>
               </div>
             </CardBody>
           </Card>
@@ -103,10 +110,6 @@ class Test extends React.Component{
 	};
 
   handleSubmit(username, password) {
-    // let data = APIService.login(username, password).then(function(result) {
-    //   console.log(result);
-    //   return result;
-    // });
     let login = APIService.login(username, password);
     login.then(res => {
       console.log(res)
@@ -114,7 +117,37 @@ class Test extends React.Component{
     });
     console.log(localStorage.getItem('accountKey'));
     console.log(this.state);
-  }
+  };
+
+  getBalance() {
+    let balance = APIService.login();
+    balance.then(res => {
+      console.log(res)
+      this.setState({'data': res})
+    });
+    console.log(this.state);
+  };
+
+  buyAsset() {
+    localStorage.setItem("accountKey", "9b2824bc-9401-4ced-82bb-beac961ae286");
+    APIService.buySellAsset("BUY",this.state.assetAmount).then(res => {
+      console.log(res)
+      this.setState({'data': res})
+    });
+    console.log(this.state);
+  };
+
+  sellAsset() {
+    localStorage.setItem("accountKey", "9b2824bc-9401-4ced-82bb-beac961ae286");
+    console.log("Sell Assest");
+    APIService.buySellAsset("SELL",this.state.assetAmount).then(res => {
+      console.log(res)
+      this.setState({'data': res})
+    });
+    console.log(this.state);
+
+  };
+
 }
 
-export default Test;
+export default Test; 
