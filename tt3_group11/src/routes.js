@@ -36,6 +36,7 @@ import NotificationsPage from "views/Notifications/Notifications.js";
 import UpgradeToPro from "views/UpgradeToPro/UpgradeToPro.js";
 // core components/views for RTL layout
 import RTLPage from "views/RTLPage/RTLPage.js";
+import Login from "views/Login/Login.js";
 
 const dashboardRoutes = [
   {
@@ -117,7 +118,16 @@ const dashboardRoutes = [
     icon: Unarchive,
     component: UpgradeToPro,
     layout: "/admin"
+  },
+  {
+    path: "/login",
+    name: "Login",
+    rtlName: "التطور للاحترافية",
+    icon: Unarchive,
+    component: Login,
+    layout: "/admin"
   }
+
 ];
 
 export default dashboardRoutes;
